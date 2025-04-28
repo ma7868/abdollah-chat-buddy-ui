@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mic, Send, Sun, Moon } from "lucide-react";
@@ -36,20 +35,22 @@ export function ChatInterface() {
   // Initialize speech recognition if supported
   useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognition.current = new SpeechRecognition();
-      recognition.current.continuous = false;
-      recognition.current.interimResults = false;
-      
-      recognition.current.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        setInputText(transcript);
-        handleSendMessage(transcript);
-      };
-      
-      recognition.current.onend = () => {
-        setIsListening(false);
-      };
+      const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognitionAPI) {
+        recognition.current = new SpeechRecognitionAPI();
+        recognition.current.continuous = false;
+        recognition.current.interimResults = false;
+        
+        recognition.current.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          setInputText(transcript);
+          handleSendMessage(transcript);
+        };
+        
+        recognition.current.onend = () => {
+          setIsListening(false);
+        };
+      }
     }
   }, []);
 
