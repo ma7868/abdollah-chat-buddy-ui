@@ -1,11 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from "react";
+import { ChatInterface } from "@/components/chat/ChatInterface";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gradient-radial from-background to-secondary/50 flex items-center justify-center p-4">
+      <div className="w-full max-w-2xl h-[80vh] glass rounded-2xl overflow-hidden shadow-xl">
+        <div className="flex flex-col h-full">
+          <div className="bg-gradient-to-r from-primary to-accent py-4 px-6">
+            <h1 className="text-xl font-semibold text-white">Abdullah Assistant</h1>
+            <p className="text-sm text-white/80">Your personal AI assistant</p>
+          </div>
+          
+          <div className="flex-1 overflow-hidden">
+            <ChatInterface />
+          </div>
+        </div>
       </div>
     </div>
   );
